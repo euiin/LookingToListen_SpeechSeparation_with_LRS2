@@ -18,7 +18,8 @@ python-dateutil==2.8.0
 pytz==2019.2
 resampy==0.2.2
 SoundFile==0.10.2
-catalyst
+catalyst==20.1
+alchemy-catalyst
 facenet-pytorch
 memory-profiler
 lz4
