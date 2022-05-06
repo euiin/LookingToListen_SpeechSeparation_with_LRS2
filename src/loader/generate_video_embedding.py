@@ -8,7 +8,8 @@ from pathlib import Path
 
 from facenet_pytorch import MTCNN, InceptionResnetV1, extract_face
 
-from src.loader import input_face_embeddings, get_frames
+from data import get_frames
+from frames import input_face_embeddings, get_frames
 
 FRAMES = 75
 
