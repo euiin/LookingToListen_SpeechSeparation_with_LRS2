@@ -1,28 +1,132 @@
-argcomplete==1.10.0
-audioread==2.1.8
-cffi==1.12.3
-Click==7.0
-cycler==0.10.0
-decorator==4.4.0
-future==0.17.1
-joblib==0.13.2
-kiwisolver==1.1.0
-librosa==0.7.0
-matplotlib
-numpy==1.17.2
-pandas==0.25.1
-Pillow==8.1.0
-pycparser==2.19
-pyparsing==2.4.2
-python-dateutil==2.8.0
-pytz==2019.2
-resampy==0.2.2
-SoundFile==0.10.2
-catalyst==20.1
+absl-py
 alchemy-catalyst
+argcomplete
+#astroid @ file:///tmp/build/80754af9/astroid_1628055155277/work
+audioread
+#av @ file:///home/conda/feedstock_root/build_artifacts/av_1625330863349/work
+backcall
+brotlipy
+cachetools
+catalyst==20.1
+certifi
+cffi
+chardet
+#charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
+Click
+#colorama @ file:///tmp/build/80754af9/colorama_1607707115595/work
+crc32c
+cryptography
+#cycler @ file:///tmp/build/80754af9/cycler_1637851556182/work
+#dataclasses @ file:///tmp/build/80754af9/dataclasses_1614363715916/work
+decorator
+docker-pycreds
+docutils
+#editdistance @ file:///tmp/build/80754af9/editdistance_1605215813244/work
 facenet-pytorch
-memory-profiler
+future
+gitdb
+GitPython
+google-auth
+google-auth-oauthlib
+grpcio
+hydra-slayer
+#idna @ file:///tmp/build/80754af9/idna_1637925883363/work
+imageio
+importlib-metadata
+importlib-resources
+ipython
+ipython-genutils
+#isort @ file:///tmp/build/80754af9/isort_1628603791788/work
+jedi
+joblib
+#kiwisolver @ file:///tmp/build/80754af9/kiwisolver_1612282412546/work
+#lazy-object-proxy @ file:///tmp/build/80754af9/lazy-object-proxy_1616526919073/work
+librosa
+llvmlite
 lz4
-wandb
-mir_eval
+Markdown
+matplotlib
+mccabe
+memory-profiler
+mir-eval
+#mkl-fft==1.3.0 얘네는 안됨
+#mkl-random==1.1.1
+#mkl-service==2.3.0
+networkx
+numba
+#numpy @ file:///home/conda/feedstock_root/build_artifacts/numpy_1626681920064/work
+oauthlib
+olefile
+opencv-python
+# packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1637239678211/work
+## pandas==0.25.1
+parso
+pathtools
+pexpect
+pickleshare
+Pillow
+plotly
+promise
+prompt-toolkit
+protobuf
+psutil
+ptyprocess
+pyasn1
+pyasn1-modules
+#pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
+Pygments
+#pylint @ file:///tmp/build/80754af9/pylint_1627536508692/work
+pyOpenSSL
+#pyparsing @ file:///tmp/build/80754af9/pyparsing_1635766073266/work
 pysndfx
+#PySocks @ file:///tmp/build/80754af9/pysocks_1605305763431/work
+#python-dateutil @ file:///tmp/build/80754af9/python-dateutil_1626374649649/work
+pytz
+PyWavelets
+PyYAML
+requests
+requests-oauthlib
+resampy
+rsa
+safitty
+scikit-image
+scikit-learn
+scipy
+seaborn
+sentry-sdk
+setproctitle
+shortuuid
+#six @ file:///tmp/build/80754af9/six_1644875935023/work
+smmap
+SoundFile
+#src-rvpt @ file:///home/euiin/SpeechSeparation/dist/src_rvpt-0.0.2-py3-none-any.whl
+tenacity
+tensorboard
+tensorboard-data-server
+tensorboard-plugin-wit
+tensorboardX
+#threadpoolctl @ file:///Users/ktietz/demo/mc3/conda-bld/threadpoolctl_1629802263681/work
+tifffile
+#toml @ file:///tmp/build/80754af9/toml_1616166611790/work
+#torch==1.10.1
+#torchaudio==0.9.0a0+33b2469
+#torchvision==0.11.2
+#tornado @ file:///tmp/build/80754af9/tornado_1606942266872/work
+#tqdm @ file:///opt/conda/conda-bld/tqdm_1647339053476/work
+traitlets
+#typed-ast @ file:///tmp/build/80754af9/typed-ast_1624953671446/work
+#typing_extensions @ file:///opt/conda/conda-bld/typing_extensions_1647553014482/work
+urllib3
+wandb
+wcwidth
+Werkzeug
+wrapt
+#youtube-dl @ file:///home/conda/feedstock_root/build_artifacts/youtube-dl_1640026230460/work
+zipp
+##
+youtube-dl 
+tqdm
+#src-rvpt 왱??
+scikit-learn
+kiwisolver
+# pip install -r requirements.txt --upgrade

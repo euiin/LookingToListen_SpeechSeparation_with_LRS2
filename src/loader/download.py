@@ -1,3 +1,7 @@
+#Pytorch model
+#Speech-Separation/src/loader/download.py
+#Editing Video file -> 3sec
+
 import os
 import time
 import tqdm
@@ -7,19 +11,6 @@ import pandas as pd
 from pathlib import Path
 import concurrent.futures
 
-
-def download(link, path, final_name=None):
-    command = "youtube-dl {} --output {}.mp4 -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4'"
-    if os.path.exists(path) and os.path.isfile(path):
-        print("File already downloaded")
-        return False
-    if final_name is not None and os.path.isfile(final_name):
-        print("File already cropped")
-        return True
-
-    p = subprocess.Popen(command.format(link, path), shell=True, stdout=subprocess.PIPE,
-                         stderr=subprocess.PIPE, cwd=args.vid_dir).communicate()
-    return False
 
 def crop(path, start, end, downloaded_name):
     command = ("ffmpeg -y -i {}.mp4 -ss {} -t {} -c:v libx264 -crf 18 -preset veryfast -pix_fmt yuv420p "
@@ -34,32 +25,44 @@ def crop(path, start, end, downloaded_name):
         return
 
     command = command.format(downloaded_name, f"{start_minute}:{start_second}", f"{end_minute}:{end_second}", new_filepath)
-    subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+    os.system(command)
+    #subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
 
-    remove_orig_file = f"rm -f {downloaded_name}.mp4"
-    subprocess.Popen(remove_orig_file, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+    print("crop done")
+
+    command2 = "mv "+new_filepath+" /home/euiin/SpeechSeparation/data/pre_video"
+    #remove_orig_file = f"rm -f {downloaded_name}.mp4"
+    os.system(command2)
+    #subprocess.Popen(remove_orig_file, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
 
 def save_video(zargs):
-    link, path, start, end, pos_x, pos_y = zargs
-    x = int(pos_x*10000)
-    y = int(pos_y*10000)
-    downloaded_name = path.as_posix() + f"_{x}_{y}"
-    cropped = download(link, downloaded_name, final_name=downloaded_name + "_final.mp4")
-    if not cropped:
-        crop(path, start, end, downloaded_name)
+    path, start, end= zargs
+    
+    downloaded_name = path.as_posix()
+    print("downloaded name")
+    print(downloaded_name)
+    
+    crop(path, start, end, downloaded_name)
 
 def main(args):
-    df = pd.read_csv(args.path)
-    links = df.iloc[:, 0][args.start:args.end]
-    start_times = df.iloc[:, 1][args.start:args.end]
-    end_times = df.iloc[:, 2][args.start:args.end]
-    pos_x = df.iloc[:, 3][args.start:args.end]
-    pos_y = df.iloc[:, 4][args.start:args.end]
+    links = list()
+    lts = dict()
+    start_times = list()
+    end_times = list()
+    for root, dirs, files in os.walk("/home/euiin/SpeechSeparation/data/some_lrs2"):
+        for file in files:
+            if file.endswith(".mp4"):
+                links.append(os.path.join(root, file[:-4]))
+                start_times.append(0)
+                end_times.append(3)
+                
 
-    yt_links = ["https://youtube.com/watch\?v\="+l for l in links]
+    #pos_x = df.iloc[:, 3][args.start:args.end]
+    #pos_y = df.iloc[:, 4][args.start:args.end]
+
     paths = [Path(os.path.join(args.vid_dir, f)) for f in links]
 
-    link_path = zip(yt_links, paths, start_times, end_times, pos_x, pos_y)
+    link_path = zip(paths, start_times, end_times) #position information delete
     with concurrent.futures.ThreadPoolExecutor(args.jobs) as executor:
         results = list(tqdm.tqdm(executor.map(save_video, link_path), total=len(links)))
 

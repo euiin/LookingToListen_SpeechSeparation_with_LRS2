@@ -7,9 +7,9 @@ from tqdm import tqdm
 from pathlib import Path
 
 from facenet_pytorch import MTCNN, InceptionResnetV1, extract_face
-
-from data import get_frames
-from frames import input_face_embeddings, get_frames
+# from scr.loader import input_face_embeddings, get_frames
+from data import Signal, get_frames
+from frames import input_face_embeddings
 
 FRAMES = 75
 

@@ -15,12 +15,12 @@ from pathlib import Path
 
 
 AUDIO_MIX_COMMAND_PREFIX = "ffmpeg -y -t 00:00:03 -ac 1 "
-AUDIO_DIR = "../../data/train/audio"
-MIXED_AUDIO_DIR = "../../data/train/mixed"
-REL_AUDIO_DIR = "../data/train/mixed"
-VIDEO_DIR = "../../data/train"
-REL_VIDEO_DIR = "../data/train"
-AUDIO_SET_DIR = "./../../data/audio_set/audio"
+AUDIO_DIR = "/home/euiin/SpeechSeparation/data/extr_audio"
+MIXED_AUDIO_DIR = "/home/euiin/SpeechSeparation/data/mix_audio"
+REL_AUDIO_DIR = "/home/euiin/SpeechSeparation/data/mix_audio" # not used
+VIDEO_DIR = "/home/euiin/SpeechSeparation/data/pre_video"
+REL_VIDEO_DIR = "/home/euiin/SpeechSeparation/data/pre_video"
+AUDIO_SET_DIR = "./../../data/audio_set/audio" # 여기 머야
 
 STORAGE_LIMIT = 5_000_000_000
 REMOVE_RANDOM_CHANCE = 0.9
@@ -35,7 +35,7 @@ def sample_audio_set():
     total_choices = max(1, int(random.gauss(mu=1, sigma=1)))
     choices = list(range(total_files))
     random.shuffle(choices)
-
+    #import pdb; pdb.set_trace()
     return [audio_files[i] for i in choices[:total_choices]]
 
 def requires_excess_storage_space(n, r):
@@ -74,7 +74,7 @@ def audio_mixer(dataset_size: int, input_audio_size=2, video_ext=".mp4", audio_e
 
     train_files = audio_files[:total_train_files]
     val_files = audio_files[-total_val_files:]
-
+    
     def retrieve_name(f):
         f = os.path.splitext(os.path.basename(f))[0]
         return re.sub(r'_part\d', '', f)
@@ -101,6 +101,7 @@ def audio_mixer(dataset_size: int, input_audio_size=2, video_ext=".mp4", audio_e
         noises = []
         
         total_comb_size = nCr(len(audio_filtered_files), input_audio_size)
+        
         for indx, audio_comb in tqdm(enumerate(audio_combinations), total=total_comb_size):
             #skip few combinations if required storage is very high
             try:
@@ -115,7 +116,7 @@ def audio_mixer(dataset_size: int, input_audio_size=2, video_ext=".mp4", audio_e
                     noise_input = sample_audio_set()
                     noises.append(":".join(noise_input))
                     audio_comb = (*audio_comb, *noise_input)
-
+                
                 audio_inputs.append(audio_comb)
                 #Convert audio file path to corresponding video path
                 video_inputs.append(tuple(os.path.join(VIDEO_DIR, retrieve_name(f) +video_ext)
@@ -131,6 +132,7 @@ def audio_mixer(dataset_size: int, input_audio_size=2, video_ext=".mp4", audio_e
 
                 process = subprocess.Popen(audio_command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)#.communicate()
                 mixed_audio.append(mixed_audio_name)
+                
                 #print(video_inputs, audio_inputs, mixed_audio, noises)
             except KeyboardInterrupt as e:
                 print("Caught Interrupt!")
@@ -165,10 +167,10 @@ def audio_mixer(dataset_size: int, input_audio_size=2, video_ext=".mp4", audio_e
         columns = [f"video_{i+1}" for i in range(input_audio_size)] + [f"audio_{i+1}" for i in range(input_audio_size)] + ["mixed_audio"]
         df = pd.DataFrame(combinations).reindex(columns=columns)
         df.to_csv(file_name_df, index=False)
-
+        
         if audio_set:
             pd.Series(noises).to_csv("noise_only.csv", index=False, header=False)
-        return df.shape[0]
+        return  indx # df.shape[0]
 
     offset = mix(train_files, "../train.csv", 0)
     mix(val_files, "../val.csv", offset)

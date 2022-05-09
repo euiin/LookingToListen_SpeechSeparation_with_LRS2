@@ -3,8 +3,8 @@ import sys
 import torch
 import mir_eval
 import numpy as np
-
-from src.loader import convert_to_wave
+#src.loader ->loader
+from loader import convert_to_wave
 
 def snr(pred_signal: torch.Tensor, true_signal: torch.Tensor) -> torch.FloatTensor:
     """

@@ -292,6 +292,7 @@ class Audio_Visual_Fusion(nn.Module):
         audio_out = self.audio_output(input_audio)
         # audio_out will be (N,256,298,1)
         AVFusion = [audio_out]
+        #import pdb; pdb.set_trace()
         for i in range(self.num_person):
             video_out = self.video_output(input_video[i])
             AVFusion.append(video_out)

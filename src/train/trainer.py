@@ -4,11 +4,11 @@ import torch
 
 import collections
 from pathlib import Path
+#src.train-> train
+from train import ParamConfig
+from train import SNRCallback
 
-from src.train import ParamConfig
-from src.train import SNRCallback
-
-from catalyst.dl import utils
+from catalyst.dl import utils, core
 from catalyst.dl.runner import SupervisedRunner
 from catalyst.dl.callbacks import EarlyStoppingCallback
 from catalyst.dl.callbacks.scheduler import SchedulerCallback

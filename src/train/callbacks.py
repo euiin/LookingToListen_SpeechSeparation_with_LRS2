@@ -1,13 +1,15 @@
 import sys
-from src.loader import convert_to_wave
+#src.loader-> loader
+from loader import convert_to_wave
 
 import torch
 import numpy as np
 
 from pathlib import Path
-from src.train import snr, sdr
+#src.traom-> train
+from train import snr, sdr
 from catalyst.dl.core import Callback, MetricCallback, CallbackOrder
-
+ 
 import logging
 
 logging.basicConfig(filename='loss.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s')

@@ -6,8 +6,8 @@ import torch
 import numpy as np
 import pandas as pd
 from facenet_pytorch import MTCNN, InceptionResnetV1
-
-from src.loader import Signal, input_face_embeddings, convert_to_spectrogram
+#scr.loader->loader
+from loader import Signal, input_face_embeddings, convert_to_spectrogram
 
 
 class AVDataset(torch.utils.data.Dataset):

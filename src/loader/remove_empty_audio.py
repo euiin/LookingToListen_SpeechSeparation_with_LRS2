@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     parser = ArgumentParser()
 
-    parser.add_argument("--mixed-dir", default=Path("../../data/train/mixed"), type=Path)
+    parser.add_argument("--mixed-dir", default=Path("/home/euiin/SpeechSeparation/data/extr_audio"), type=Path)
     parser.add_argument("--train-df", default=Path("../train.csv"), type=Path)
     parser.add_argument("--val-df", default=Path("../val.csv"), type=Path)
 

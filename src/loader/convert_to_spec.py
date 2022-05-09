@@ -1,4 +1,5 @@
-from src.loader import convert_to_spectrogram
+#from src.loader import convert_to_spectrogram
+from audio_feature_generator import convert_to_spectrogram, convert_to_wave
 import concurrent.futures
 import pandas as pd
 import numpy as np
@@ -19,7 +20,8 @@ def get_list(df):
     mixed_files = list(df.iloc[:, -1])
     audio_files = list(set(list(df.iloc[:, 2]) + list(df.iloc[:, 3])))
     total_files = mixed_files + audio_files
-    total_files = ["../" + i for i in total_files]
+    #total_files = ["../" + i for i in total_files]
+    total_files = [ i for i in total_files]
     return total_files
 
 def main():

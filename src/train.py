@@ -5,10 +5,12 @@ import numpy as np
 from pathlib import Path
 from memory_profiler import profile
 from argparse import ArgumentParser
-
-from src.loader import AVDataset
-from src.train import train, ParamConfig
-from src.models import Audio_Visual_Fusion as AVFusion
+#src.loader -> loader
+#src.train -> train
+#src.models -> models
+from loader import AVDataset
+from train import train, ParamConfig
+from models import Audio_Visual_Fusion as AVFusion
 
 class DiscriminativeLoss(torch.nn.Module):
     #Reference: https://github.com/bill9800/speech_separation/blob/master/model/lib/model_loss.py
@@ -66,8 +68,8 @@ if __name__ == "__main__":
     parser.add_argument("--cuda", default=True, type=bool, help="cuda for training")
     parser.add_argument("--workers", default=0, type=int, help="total workers for dataset")
     parser.add_argument("--input-audio-size", default=2, type=int, help="total input size")
-    parser.add_argument("--dataset-path", default=Path("../data/audio_visual/avspeech_train.csv"), type=Path, help="path for avspeech training data")
-    parser.add_argument("--video-dir", default=Path("../data/train"), type=Path, help="directory where all videos are stored")
+    # parser.add_argument("--dataset-path", default=Path("../data/audio_visual/avspeech_train.csv"), type=Path, help="path for avspeech training data")
+    # parser.add_argument("--video-dir", default=Path("../data/train"), type=Path, help="directory where all videos are stored")
     parser.add_argument("--input-df-path", default=Path("train.csv"), type=Path, help="path for combinations dataset")
     parser.add_argument("--val-input-df-path", default=Path("val.csv"), type=Path, help="path for combinations dataset")
     parser.add_argument("--use-half", default=False, type=bool, help="halves the precision")
