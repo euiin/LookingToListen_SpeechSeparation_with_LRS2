@@ -74,13 +74,13 @@ class AVDataset(torch.utils.data.Dataset):
         # we will do
         # for i in range(num_person):
         #   slice out each one , video_input[i] (because this will be of (1024,75,1))
-
+        
         mixed_signal_tensor = torch.Tensor(mixed_signal)  #shape  (257,298,2)
         mixed_signal_tensor = torch.transpose(mixed_signal_tensor,0,2) #shape (2,298,257)  , therefore , 2 channels , height = 298 , width = 257
         audio_tensors = [i.transpose(0, 2) for i in audio_tensors]
         audio_tensors = torch.stack(audio_tensors)
         audio_tensors = audio_tensors.permute(1, 2, 3, 0)
-
+        
         return audio_tensors, video_tensors, mixed_signal_tensor
 
 def _check_all_embed_saved(path, num_video):
@@ -120,8 +120,8 @@ if __name__ == "__main__":
     from argparse import ArgumentParser
 
     parser = ArgumentParser()
-    parser.add_argument("--video-dir", default="../../data/train/", type=Path)
-    parser.add_argument("--embed-dir", default="../../data/embed/", type=Path)
+    parser.add_argument("--video-dir", default="/home/euiin/SpeechSeparation/data/train", type=Path)
+    parser.add_argument("--embed-dir", default="/home/euiin/SpeechSeparation/data/train/embed", type=Path)
     parser.add_argument("--train-path", default="../train.csv", type=Path)
     parser.add_argument("--val-path", default="../val.csv", type=Path)
 

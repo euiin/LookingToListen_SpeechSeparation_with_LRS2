@@ -30,7 +30,7 @@ def crop(path, start, end, downloaded_name):
 
     print("crop done")
 
-    command2 = "mv "+new_filepath+" /home/euiin/SpeechSeparation/data/pre_video"
+    command2 = "mv "+new_filepath+"/home/euiin/SpeechSeparation/data/train"
     #remove_orig_file = f"rm -f {downloaded_name}.mp4"
     os.system(command2)
     #subprocess.Popen(remove_orig_file, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
@@ -69,8 +69,8 @@ def main(args):
 if __name__ == "__main__":
     parse = argparse.ArgumentParser(description="Download parameters")
     parse.add_argument("--jobs", type=int, default=1)
-    parse.add_argument("--path", type=str, default="../../data/audio_visual/avspeech_train.csv")
-    parse.add_argument("--vid-dir", type=str, default="../../data/train/")
+    parse.add_argument("--path", type=str, default="../../data/audio_visual/avspeech_train.csv") #dlr
+    parse.add_argument("--vid-dir", type=str, default="/home/euiin/SpeechSeparation/data/train")
     parse.add_argument("--start", type=int, default=0)
     parse.add_argument("--end", type=int, default=10_000)
     args = parse.parse_args()

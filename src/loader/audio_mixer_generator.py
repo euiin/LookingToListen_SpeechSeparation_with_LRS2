@@ -16,10 +16,10 @@ from pathlib import Path
 
 AUDIO_MIX_COMMAND_PREFIX = "ffmpeg -y -t 00:00:03 -ac 1 "
 AUDIO_DIR = "/home/euiin/SpeechSeparation/data/extr_audio"
-MIXED_AUDIO_DIR = "/home/euiin/SpeechSeparation/data/mix_audio"
-REL_AUDIO_DIR = "/home/euiin/SpeechSeparation/data/mix_audio" # not used
-VIDEO_DIR = "/home/euiin/SpeechSeparation/data/pre_video"
-REL_VIDEO_DIR = "/home/euiin/SpeechSeparation/data/pre_video"
+MIXED_AUDIO_DIR = "/home/euiin/SpeechSeparation/data/train/mixed"
+REL_AUDIO_DIR = "../../data/train/mixed" # not used
+VIDEO_DIR = "/home/euiin/SpeechSeparation/data/train"
+REL_VIDEO_DIR = "/home/euiin/SpeechSeparation/data/train" # not used
 AUDIO_SET_DIR = "./../../data/audio_set/audio" # 여기 머야
 
 STORAGE_LIMIT = 5_000_000_000

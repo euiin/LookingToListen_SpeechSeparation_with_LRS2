@@ -31,6 +31,7 @@ def train(model: torch.nn.Module, dataset: torch.utils.data.Dataset,
     """
 
     loaders = collections.OrderedDict()
+    import pdb; pdb.set_trace()
     train_loader = utils.get_loader(dataset, open_fn=lambda x: {"input_audio": x[-1], "input_video": x[1], "targets": x[0]},
                                     batch_size=config.batch_size, num_workers=config.workers, shuffle=True)
     val_loader = utils.get_loader(val_dataset, open_fn=lambda x: {"input_audio": x[-1], "input_video": x[1], "targets": x[0]},
@@ -40,7 +41,7 @@ def train(model: torch.nn.Module, dataset: torch.utils.data.Dataset,
     scheduler = torch.optim.lr_scheduler.CyclicLR(optimizer, base_lr=config.learning_rate,
                                                   max_lr=config.learning_rate * 10, step_size_up=4*len(train_loader),
                                                   mode="triangular", cycle_momentum=False)
-
+    import pdb; pdb.set_trace()    
     runner = SupervisedRunner(input_key=["input_audio", "input_video"])
     runner.train(model=model, criterion=criterion,
                  optimizer=optimizer, scheduler=scheduler,

@@ -93,8 +93,8 @@ if __name__ == "__main__":
     from argparse import ArgumentParser
 
     parser = ArgumentParser()
-    parser.add_argument("--video-dir", default="../../data/train/", type=Path)
-    parser.add_argument("--embed-dir", default="../../data/train/embed/", type=Path)
+    parser.add_argument("--video-dir", default="/home/euiin/SpeechSeparation/data/train", type=Path)
+    parser.add_argument("--embed-dir", default="/home/euiin/SpeechSeparation/data/train/embed", type=Path)
     parser.add_argument("--train-path", default="train.csv", type=Path)
     parser.add_argument("--val-path", default="val.csv", type=Path)
     parser.add_argument("--cuda", default=1, type=int)
